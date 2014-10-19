@@ -1,0 +1,12 @@
+[package]
+
+name = "ann"
+version = "0.0.1"
+authors = ["mitchmindtree <mitchell.nordine@gmail.com>"]
+
+[lib]
+
+name = "ann"
+path = "./src/lib.rs"
+
+

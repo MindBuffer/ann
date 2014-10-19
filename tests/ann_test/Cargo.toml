@@ -1,0 +1,15 @@
+[package]
+
+name = "ann_test"
+version = "0.0.1"
+authors = ["mitchmindtree <mitchell.nordine@gmail.com>"]
+
+[[bin]]
+
+name = "ann_test"
+path = "./src/ann_test.rs"
+
+[dependencies.ann]
+
+path = "../../"
+
