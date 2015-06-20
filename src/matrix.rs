@@ -21,9 +21,11 @@ pub fn normalise_cols<N>(mat: &mut Mat<N>) where
 {
     let num_rows = mat.nrows();
     for col in mat.as_mut_vec().chunks_mut(num_rows) {
-        let max = col.iter().fold(::nalgebra::zero(), |max, &elem| {
+        let max = col.iter().fold(N::zero(), |max, &elem| {
             if elem > max { elem } else { max }
         });
+        // If the max value is zero we can't normalise so continue to next column.
+        if max == N::zero() { continue; }
         for elem in col.iter_mut() {
             *elem = *elem / max;
         }
