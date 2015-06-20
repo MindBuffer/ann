@@ -9,4 +9,7 @@ authors = ["mitchmindtree <mitchell.nordine@gmail.com>"]
 name = "ann"
 path = "./src/lib.rs"
 
-
+[dependencies]
+nalgebra = "*"
+petgraph = "*"
+rand = "*"
