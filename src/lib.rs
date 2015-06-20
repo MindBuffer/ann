@@ -4,6 +4,7 @@
 //! more about ANNs and machine learning.
 
 extern crate nalgebra;
+extern crate num;
 extern crate petgraph;
 extern crate rand;
 

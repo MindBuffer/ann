@@ -20,6 +20,9 @@ pub struct Network {
 impl Network {
 
     /// Construct an Artificial Neural Network.
+    /// * n_inputs - The number of input types.
+    /// * n_hidden - The number of neurons in the hidden layer.
+    /// * n_outputs - The number of neurons in the output layer.
     /// Initialise all of the weights as random values.
     pub fn new(n_inputs: usize, n_hidden: usize, n_outputs: usize) -> Network {
         Network {
@@ -31,8 +34,14 @@ impl Network {
     /// Generate a matrix of guesses by feeding forward some matrix of inputs.
     /// The `Mat`rices are column-major `Vec`tors.
     /// For the input data, each column is a different input and each row is a different example.
+    ///
+    /// # Panic!
+    /// Panics if the number of input_data columns (number of inputs) does not match the number of
+    /// hidden_weights rows.
     pub fn forward(&self, input_data: Mat<f32>) -> Mat<f32> {
         let Network { ref hidden_weights, ref output_weights } = *self;
+
+        assert!(input_data.ncols() == hidden_weights.nrows());
 
         // Determine the hidden layer's activity matrix by multiplying the input matrix by our
         // matrix of hidden layer weights.

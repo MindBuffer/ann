@@ -11,5 +11,6 @@ path = "./src/lib.rs"
 
 [dependencies]
 nalgebra = "*"
+num = "*"
 petgraph = "*"
 rand = "*"
