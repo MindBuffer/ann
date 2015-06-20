@@ -16,15 +16,15 @@ extern crate ann;
 
 fn main() {
 
-    use ann::matrix::Mat;
+    use ann::matrix::{self, Mat};
     use ann::network::Network;
 
 
-    // Hyperparameters.
-    const MAX_SLEEP: f32 = 10.0;
-    const MAX_STUDY: f32 = 10.0;
+    // Data Constants.
     const MAX_SCORE: f32 = 100.0;
     const NUM_EXAMPLES: usize = 3;
+
+    // Neural Network Hyperparameters.
     const NUM_INPUTS: usize = 2;
     const NUM_HIDDEN: usize = 3;
     const NUM_OUTPUTS: usize = 1;
@@ -46,20 +46,10 @@ fn main() {
 
 
     // Normalise input data.
-    {
-        let mut inputs = input_data.as_mut_vec().chunks_mut(NUM_EXAMPLES);
-        for sleep in inputs.next().unwrap() {
-            *sleep = *sleep / MAX_SLEEP;
-        }
-        for study in inputs.next().unwrap() {
-            *study = *study / MAX_STUDY;
-        }
-    }
+    matrix::normalise_cols(&mut input_data);
 
     // Normalise correct output.
-    for score in correct_output.as_mut_vec().iter_mut() {
-        *score = *score / MAX_SCORE;
-    }
+    matrix::update_elems(&mut correct_output, |score| score / MAX_SCORE);
 
     print!("Normalised input_data:\n{:?}", &input_data);
     print!("Normalised correct_output:\n{:?}", &correct_output);
